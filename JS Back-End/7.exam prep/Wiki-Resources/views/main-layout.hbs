@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageTitle}}</title>
+    <link href="/css/site.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <aside>
+            <div class="center">
+                <img class="logo" src="img/logo.png" alt="logo">
+            </div>
+
+
+            {{>navigation}}
+        </aside>
+
+        <div id="container">
+
+            {{>header}}
+
+            {{#if message}}
+            <section class="notifications">
+                <p class="notification-message">{{message}}</p>
+            </section>
+            {{/if}}
+
+            <main>
+                <h1>Welcome to SoftUni Wiki!</h1>
+                {{{ body }}}
+            </main>
+            {{>footer}}
+        </div>
+    </div>
+</body>
+
+</html>

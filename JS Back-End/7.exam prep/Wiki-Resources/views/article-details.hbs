@@ -1,0 +1,15 @@
+<div class="spacer">
+    <h2>Astronomy
+        <div class="controls">
+            <a href="/article/edit/{{article._id}}">[edit]</a>
+            {{#if isCreator}}
+            <a href="/article/delete/{{article._id}}">[delete]</a>
+            {{/if}}
+        </div>
+    </h2>
+    <article>
+        <p>
+            {{article.description}}
+        </p>
+    </article>
+</div>
