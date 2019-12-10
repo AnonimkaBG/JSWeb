@@ -1,6 +1,6 @@
 # Watchlist project
 
-<img src="http://www.prikachi.com/images.php?images/767/9702767Y.png">
+<img src="http://www.prikachi.com/images/767/9702767Y.png">
 
 
 ### Description
