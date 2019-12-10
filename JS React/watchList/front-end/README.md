@@ -1,5 +1,7 @@
 # Watchlist project
-[![Logo](http://www.prikachi.com/images.php?images/767/9702767Y.png)]
+
+<img src="<http://www.prikachi.com/images.php?images/767/9702767Y.png" align="left" " width="200" height="100">
+
 
 ### Description
 
