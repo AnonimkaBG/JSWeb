@@ -1,0 +1,31 @@
+.Register {
+    width: 83%;
+    display: inline-block;
+    vertical-align: top; 
+  }
+  
+  .Register .form-control {
+    width: 50%;
+    margin: 0 auto;
+    padding: 1%;
+    text-align: center;
+  }
+  
+  .Register label {
+    float: left;
+    width: 30%;
+    text-align: right;
+  }
+  
+  .Register input {
+    text-align: center; padding: 1%;
+    width: 50%; border-radius: 6px; color: #000000;
+  }
+  
+  .Register form button {
+    width: auto;
+    padding: 2%;
+  }
+  .Register h1{
+    text-align: center;
+  }

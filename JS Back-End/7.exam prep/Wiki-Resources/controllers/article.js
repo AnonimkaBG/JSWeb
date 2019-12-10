@@ -60,7 +60,7 @@ module.exports = {
                     articles
                 };
     
-                res.render('all-articles.hbs', hbsObject);
+                res.send(articles);
             });
         }
     },

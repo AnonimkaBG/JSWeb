@@ -1,0 +1,29 @@
+.Aside{
+    display: inline-block;
+  width: 15%;
+  margin-right: 1%;
+  height: 89.5vh;
+  vertical-align: top;
+  background-color:#e9e8e8;
+}
+
+.Aside ul{
+    list-style-type: none;
+}
+.Aside a{
+  font-weight: bold;
+font-family: arial;
+font-style: normal;
+font-size: 16px;
+color: #000000;
+text-decoration: none;
+display: block;
+padding: 17px 20px 6px 20px;
+margin: 0;
+margin-bottom: 2px;
+border-radius: 10px;
+}
+
+.Aside a:hover {
+  background-color: rgb(124, 124, 124);
+}
