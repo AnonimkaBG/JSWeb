@@ -1,13 +1,11 @@
 # Watchlist project
 
-<img src="http://www.prikachi.com/images/767/9702767Y.png" width="100" height="100">
-
 
 ### Description
 
 Watchlist is a single page application(SPA) that let you make lists of movies you want to watch.
 
-### Tech
+### Build with
 
 * [MongoDB](https://www.mongodb.com) - Free and open-source cross-platform document-oriented database
 * [Mongoose](http://mongoosejs.com/index.html) - Elegant MongoDB object modeling for NodeJS
