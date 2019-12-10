@@ -1,5 +1,5 @@
 # Watchlist project
-[![Logo](http://localhost:3000/logo.png)]
+[![Logo](http://www.prikachi.com/images.php?images/767/9702767Y.png)]
 
 ### Description
 
