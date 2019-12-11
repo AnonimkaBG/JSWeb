@@ -11,7 +11,7 @@ class Watchlists extends React.Component {
     textInput = null;
 
     componentDidMount() {
-        watchlistService.load(null).then(Watchlists => {
+        watchlistService.load().then(Watchlists => {
             this.setState({ Watchlists });
         });
     }
@@ -27,8 +27,7 @@ class Watchlists extends React.Component {
             {Watchlists ?
                 <div className="Watchlists">
                     <ul>
-                        {Watchlists.map((watchlist) =>
-                        <Watchlist key={watchlist._id} image={watchlist.image} imageAlt="image" title={watchlist.title} description={watchlist.description} movies={watchlist.movies}></Watchlist>)}
+                        {Watchlists.map((watchlist) =>watchlist.movies.length!==0? <Watchlist key={watchlist._id} image={watchlist.image} title={watchlist.title} description={watchlist.description} movies={watchlist.movies}></Watchlist> : '')}
                     </ul>
                 </div> : <div>Loading...</div>
             }

@@ -7,9 +7,6 @@
   background-color:#e9e8e8;
 }
 
-.Aside ul{
-    list-style-type: none;
-}
 .Aside a{
   font-weight: bold;
 font-family: arial;
@@ -22,6 +19,7 @@ padding: 17px 20px 6px 20px;
 margin: 0;
 margin-bottom: 2px;
 border-radius: 10px;
+text-align: center;
 }
 
 .Aside a:hover {

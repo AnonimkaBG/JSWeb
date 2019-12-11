@@ -9,9 +9,12 @@ class MovieDetails extends React.Component {
     };
 
     addToList= ()=>{
-        const id = this.props.match.params.id;
-        console.log(this.props)
-        // watchlistService.updateWatchlist(movie,id).then((res)=>res.json());
+        const _id=sessionStorage.getItem('userId');
+        const {movie}=this.state;
+        watchlistService.load(_id).then((res)=>{
+            res[0]._id? watchlistService.updateWatchlist(movie,res[0]._id).then((res)=>console.log(res)) : alert('You dont have a watchlist!');
+        } );
+        
     };
 
     componentDidMount() {

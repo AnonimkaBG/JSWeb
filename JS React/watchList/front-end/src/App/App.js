@@ -14,6 +14,7 @@ import userService from '../services/user-service';
 import MovieDetails from '../movies/MovieDetails/MovieDetails';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import CreateWatchlist from '../CreateWatchlist/CreateWatchlist';
+import MyWatchlist from '../MyWatchlist/MyWatchlist';
 
 
 function render(title, Cmp, otherProps) {
@@ -29,6 +30,7 @@ function parseCookies() {
     return acc;
   }, {})
 }
+
 
 class App extends React.Component {
 
@@ -49,6 +51,10 @@ class App extends React.Component {
 
   login = (history, data) => {
     userService.login(data).then((res) => {
+      const username=res.username;
+      const _id=res._id;
+      sessionStorage.setItem('username',username);
+      sessionStorage.setItem('userId',_id);
       this.setState({ isLogged: true });
       history.push('/');
     });
@@ -65,14 +71,15 @@ class App extends React.Component {
             <Aside />
             <Switch>
               <Route path="/" exact><Redirect to="/movies" /></Route>
-              <Route path="/movies" render={render('Movies', Movies, { isLogged })} />
+              <Route path="/movies" render={render('Movies', Movies, { isLogged})} />
               <Route path="/movie/:id" render={render('MovieDetails', MovieDetails, { isLogged })} />
               <Route path="/create-movie" render={render('CreateMovie', CreateMovie, { isLogged })} />
-              <Route path="/create-watchlist" render={render('CreateWatchlist',CreateWatchlist,{isLogged})}/>
-              <Route path="/watchlists" render={render('Watchlists',Watchlists,{isLogged})}/>
+              <Route path="/create-watchlist" render={render('CreateWatchlist',CreateWatchlist,{ isLogged})}/>
+              <Route path="/watchlists" render={render('Watchlists',Watchlists,{ isLogged })}/>
+              <Route path="/myWatchlist" render={render('MyWatchlist',MyWatchlist,{isLogged})}/>
               <Route path="/login" render={render('Login', Login, { isLogged, login: this.login })} />
               <Route path="/register" render={render('Register', Register, { isLogged })} />
-              <Route path="/logout" render={render('Logout', Logout, { isLogged, logout: this.logout })} />
+              <Route path="/logout" render={render('Logout', Logout, { isLogged, logout: this.logout})} />
               <Route path="*">
                 <Main title="Not Found"><NotFound /></Main>
               </Route>

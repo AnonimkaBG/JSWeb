@@ -17,17 +17,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         require: true
-    },
-    watchlist: [{ 
-        type: ObjectId, 
-        ref: "Watchlist" 
-    }],
-    movies: [{
-        type: ObjectId,
-        ref: "Movie"
-    }]
-
-
+    }
 });
 
 userSchema.methods = {
@@ -52,4 +42,4 @@ userSchema.pre('save', function (next) {
     next();
 });
 
-module.exports = new Model('User', userSchema, "user");
+module.exports = new Model('User', userSchema);

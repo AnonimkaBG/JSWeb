@@ -2,40 +2,43 @@ const models = require('../models');
 
 module.exports = {
     get: (req, res, next) => {
-        models.Watchlist.find()
-            .then((watchlists) => {
-                res.send(watchlists);
-            })
-            .catch(next);
+        const author = req.query.author
+        if (author) {
+            models.Watchlist.find({ author: author })
+                .then((watchlist) => {
+                    res.send(watchlist);
+                })
+                .catch(next);
+        } else {
+            models.Watchlist.find()
+                .then((watchlists) => {
+                    res.send(watchlists);
+                })
+                .catch(next);
+        }
     },
 
     post: (req, res, next) => {
-        const { description,title } = req.body;
-        const { username} = req.user;
+        const { description, title } = req.body;
+        const { _id } = req.user;
 
-        models.Watchlist.create({ description, title , author: username })
-            .then((createdMovie) => {
-                res.send(createdMovie);
+        models.Watchlist.create({ description, title, author: _id })
+            .then((createdWatchlist) => {
+                res.send(createdWatchlist);
             })
             .catch(next);
+
     },
 
     put: (req, res, next) => {
-        const id = req.params._id;
-        console.log(req.body)
-        console.log(req.params)
-        let movies=[];
-        models.Watchlist.findById(id).then((oldList)=>{
-            console.log(oldList)
-            movies=oldList;
-        });
-        const { newMovie } = req.body;
-        console.log(newMovie)
-        movies.push(newMovie);
-        console.log(movies);
-        models.Movie.updateOne({ _id: id }, { movies })
-            .then((updatedMovie) => res.send(updatedMovie))
+        const id = req.params.id; // watchlist id req.body=movie data
+        const newMovie = req.body;
+        const { _id } = req.user;
+
+        models.Watchlist.findByIdAndUpdate({ _id: id }, { '$push': { movies: newMovie } })
+            .then((updatedMovies) => res.send(updatedMovies))
             .catch(next)
+
     }
 
     // delete: (req, res, next) => {

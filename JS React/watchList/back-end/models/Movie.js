@@ -19,9 +19,9 @@ const movieSchema = new Schema({
     },
     author: {
         type: ObjectId,
-        ref: "User"
-    }
+        ref: "user"
+    },
 
 });
 
-module.exports = new Model("Movie", movieSchema,"movie");
+module.exports = new Model("Movie", movieSchema);

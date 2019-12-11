@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom';
 import './Navigation.css';
 
 
-function Navigation({isLogged}) {
+function Navigation({ isLogged }) {
+  const username=sessionStorage.getItem('username');
   return <nav className="Navigation">
     <ul>
       <li>
         <Link to="/">
-        <img id="logo" src="/logo.png" alt="my-app-logo" />
+          <img id="logo" src="/logo.png" alt="my-app-logo" />
         </Link>
       </li>
       {isLogged && <li className="listItem">
-        <Link to='/{username}'> Anonimka</Link>
+        <Link to='/{username}'> {username}</Link>
       </li>}
       {isLogged && <li className="listItem">
         <Link to="/logout">Logout</Link>

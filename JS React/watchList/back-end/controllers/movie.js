@@ -22,7 +22,7 @@ module.exports = {
         const { description,image,title } = req.body;
         const { _id } = req.user;
 
-        models.Movie.create({ description, image, title , author: _id })
+        models.Movie.create({ description, image, title , author: _id})
             .then((createdMovie) => {
                 res.send(createdMovie);
             })

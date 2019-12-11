@@ -1,7 +1,6 @@
 const watchlistService = {
     load: function (id) {
-      
-      return fetch(`http://localhost:9999/api/watchlist`).then(res => res.json());
+      return fetch(`http://localhost:9999/api/watchlist${id? `?author=${id}`: ''}`).then(res => res.json());
     },
     createWatchlist: function(data){
       return fetch(`http://localhost:9999/api/watchlist`, {

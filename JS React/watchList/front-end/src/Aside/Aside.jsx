@@ -1,6 +1,5 @@
 import React from 'react';
 import watchlistService from '../services/watchlist-service';
-import Watchlist from './Watchlist/Watchlist';
 import './Aside.css';
 
 
@@ -14,6 +13,7 @@ class Aside extends React.Component {
   componentDidMount() {
     watchlistService.load(null).then(Watchlists => {
       this.setState({ Watchlists });
+      
     });
   }
 
@@ -27,10 +27,9 @@ class Aside extends React.Component {
     return <div className="Aside">
       {Watchlists ?
         <aside>
-          <ul>
           {Watchlists.map((watchlist) =>
-            <Watchlist key={watchlist._id} title={watchlist.title} _id={watchlist._id} ></Watchlist>)}
-            </ul>
+            <a key={watchlist._id} href={'/watchlist/'+watchlist._id}>{watchlist.title}</a>)
+            }
         </aside> : <div>Loading...</div>
       }
     </div>
