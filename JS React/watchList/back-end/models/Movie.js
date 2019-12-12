@@ -15,7 +15,8 @@ const movieSchema = new Schema({
     },
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     author: {
         type: ObjectId,

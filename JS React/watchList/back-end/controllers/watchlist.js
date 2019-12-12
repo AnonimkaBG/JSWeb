@@ -21,23 +21,28 @@ module.exports = {
     post: (req, res, next) => {
         const { description, title } = req.body;
         const { _id } = req.user;
-
-        models.Watchlist.create({ description, title, author: _id })
+        if(req.user.haveList){
+            res.send('User already have a watchlist');
+        }else{
+            updateUser(_id);
+            models.Watchlist.create({ description, title, author: _id })
             .then((createdWatchlist) => {
                 res.send(createdWatchlist);
             })
             .catch(next);
 
+        }
     },
 
     put: (req, res, next) => {
-        const id = req.params.id; // watchlist id req.body=movie data
-        const newMovie = req.body;
-        const { _id } = req.user;
-
-        models.Watchlist.findByIdAndUpdate({ _id: id }, { '$push': { movies: newMovie } })
-            .then((updatedMovies) => res.send(updatedMovies))
-            .catch(next)
+        const id = req.params.id; // watchlist id 
+        const newMovie = req.body; // req.body=movie data
+        newMovie.length? models.Watchlist.findByIdAndUpdate({ _id: id }, { movies: newMovie  },{new: true})
+        .then((updatedMovies) => res.send(updatedMovies))
+        .catch(next) 
+        : models.Watchlist.findByIdAndUpdate({ _id: id }, { '$push': { movies: newMovie } },{new: true})
+        .then((updatedMovies) => res.send(updatedMovies))
+        .catch(next) ;
 
     }
 
@@ -48,3 +53,11 @@ module.exports = {
     //         .catch(next)
     // }
 };
+
+const updateUser=(_id)=>{
+    console.log('updatinggggggg')
+    models.User.findByIdAndUpdate({_id:_id},{haveList:true}).then((res)=>{
+        return res;
+    });
+
+}

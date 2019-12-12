@@ -18,7 +18,6 @@ class CreateMovie extends React.Component {
     movieService.createMovie(data).then(() => {
       this.props.history.push('/');
     })
-    // this.props.runValidations().then(formData => console.log(formData));
 
   };
 

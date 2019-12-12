@@ -14,10 +14,13 @@ class CreateWatchlist extends React.Component {
     const errors = this.props.getFormErrorState();
     if (!!errors) { return; }
     const data = this.props.getFormState();
-    watchlistService.createWatchlist(data).then(() => {
-      this.props.history.push('/');
+    watchlistService.createWatchlist(data).then((res) => {
+      if(res==='User already have a watchlist'){
+        alert('You already have a watchlist!')
+      }else{
+        this.props.history.push('/');
+      }
     })
-    // this.props.runValidations().then(formData => console.log(formData));
 
   };
 

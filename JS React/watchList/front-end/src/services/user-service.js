@@ -19,6 +19,7 @@ const userService = {
         credentials: 'include'
       }).then(res => res.json().then(text => res.status === 200 ? text : Promise.reject(text)));
     },
+    
   
     logout: function () {
       return fetch(`http://localhost:9999/api/user/logout`, {

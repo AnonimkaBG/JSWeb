@@ -8,14 +8,14 @@ function Watchlist({_id,title,description,movies}) {
     <li key={movies._id} className="list">
       <h1>{title}</h1>
       <p>{description}</p>
-      {movies ? 
+      {movies.length!==0 ? 
       <ul>
           {movies.map((movie)=>
             <a key={movie._id} href={'/movie/'+movie._id }>
             <img src={movie.image} alt={movie.title}/>
             </a>
             )}
-      </ul> : <div>Loading...</div>
+      </ul> : <div>There are no movies in this watchlist</div>
     }
     </li>
     </div>

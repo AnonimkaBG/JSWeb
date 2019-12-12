@@ -12,13 +12,12 @@ class Register extends React.Component {
   rePasswordOnChangeHandler = this.props.controlChangeHandlerFactory('rePassword');
 
   submitHandler = () => {
-    const errors=this.props.getFormErrorState();
-    if(!!errors){ return; }
-    const data=this.props.getFormState();
-    userService.register(data).then(()=>{
+    const errors = this.props.getFormErrorState();
+    if (!!errors) { return; }
+    const data = this.props.getFormState();
+    userService.register(data).then(() => {
       this.props.history.push('/login');
     })
-    // this.props.runValidations().then(formData => console.log(formData));
 
   };
 
@@ -33,7 +32,7 @@ class Register extends React.Component {
     const rePasswordError = this.getFirstControlError('rePassword');
 
     return <form className="Register">
-      <h1>Register</h1>
+      <h1 className="RegisterTitle">Register</h1>
       <div className="form-control">
         <label>Username</label>
         <input type="text" onChange={this.usernameOnChangeHandler} />
@@ -62,6 +61,15 @@ const initialFormState = {
   rePassword: ""
 };
 
+yup.addMethod(yup.mixed, 'sameAs', function(ref, message) {
+  return this.test('sameAs', message, function (value) {
+    let other = this.resolve(ref);
+
+    return !other || !value || value === other;
+  })
+})
+
+
 const schema = yup.object({
   username: yup.string('Username should be a string')
     .required('Username is required')
@@ -69,11 +77,11 @@ const schema = yup.object({
 
   password: yup.string('Password must be a string')
     .required('Password is required')
-    .min(6, 'Password must be more than 6 chars'),
+    .min(6, 'Password must be more than 6 chars')
+    .label('password'),
 
   rePassword: yup.string('Password must be a string')
     .required('Password is required')
-    // .oneOf([yup.ref('password'), null], 'Passwords doesn\'t match')
 });
 
 export default withForm(Register, initialFormState, schema);

@@ -1,7 +1,6 @@
 .Register {
-    width: 83%;
+    width: 98%;
     display: inline-block;
-    vertical-align: top; 
   }
   
   .Register .form-control {
@@ -22,10 +21,17 @@
     width: 50%; border-radius: 6px; color: #000000;
   }
   
-  .Register form button {
-    width: auto;
+  .Register button {
+    width: 12%;
+    height: 50px;
     padding: 2%;
   }
-  .Register h1{
+  .Register button:hover {
+    background-color: blue;
+    color: white;
+  }
+  
+  .RegisterTitle{
     text-align: center;
   }
+

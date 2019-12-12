@@ -17,6 +17,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         require: true
+    },
+    haveList:{
+        type: Boolean,
+        default: false
     }
 });
 

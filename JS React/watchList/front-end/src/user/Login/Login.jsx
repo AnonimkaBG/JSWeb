@@ -30,6 +30,7 @@ const Login = ({ login, history }) => {
       password: passwordFormControl.value
     }).then(data => {
       login(history, data).catch(error => {
+        console.log(error)
         if (typeof error === 'object') { throw error; }
         setServerError(error);
       });

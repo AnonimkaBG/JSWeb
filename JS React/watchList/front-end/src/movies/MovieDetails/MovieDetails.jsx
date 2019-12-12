@@ -3,41 +3,35 @@ import './MovieDetails.css';
 import Movieservice from '../../services/movie-service';
 import watchlistService from '../../services/watchlist-service';
 
-class MovieDetails extends React.Component {
-    state = {
-        movie: null
-    };
+const MovieDetails=(props)=>{
+    const id = props.match.params.id;
+    const [movie,setMovie]=React.useState(null);
+    const _id=sessionStorage.getItem('userId');
 
-    addToList= ()=>{
-        const _id=sessionStorage.getItem('userId');
-        const {movie}=this.state;
+    React.useEffect(()=>{
+        Movieservice.loadOne(id).then(movie => {
+            setMovie(movie );
+        });
+    },[id]);
+
+    const addToList= ()=>{
         watchlistService.load(_id).then((res)=>{
-            res[0]._id? watchlistService.updateWatchlist(movie,res[0]._id).then((res)=>console.log(res)) : alert('You dont have a watchlist!');
+            res[0]._id? watchlistService.updateWatchlist(movie,res[0]._id).then((res)=>alert(`Succesfully added ${movie.title} to your watchlist!`)) : alert('You dont have a watchlist!');
         } );
         
     };
 
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        Movieservice.loadOne(id).then(movie => {
-            this.setState({ movie });
-        });
-    }
-
-    render() {
-        const { movie } = this.state;
-
-        return <div>
+    return <div>
             {movie ?
                 <div className="MovieDetails">
                     <p className="MovieTitle">{movie.title}</p>
                     <img src={movie.image} alt="" />
                     <p className="description">{movie.description}</p>
-                    <button onClick={this.addToList}>Add to watchlist</button>
+                    <button className="button" onClick={addToList}>Add to watchlist</button>
                 </div> : <div>Loading...</div>
             }
         </div>
-    }
+
 }
 
 export default MovieDetails;

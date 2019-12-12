@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Navigation from '../Navigation/Navigation';
-import Aside from '../Aside/Aside';
 import Main from './Main/Main';
 import Movies from '../movies/Movies/Movies';
 import CreateMovie from '../movies/CreateMovie/CreateMovie';
@@ -15,6 +14,7 @@ import MovieDetails from '../movies/MovieDetails/MovieDetails';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import CreateWatchlist from '../CreateWatchlist/CreateWatchlist';
 import MyWatchlist from '../MyWatchlist/MyWatchlist';
+import WatchlistDetails from '../WatchlistDetails/WatchlistDetails';
 
 
 function render(title, Cmp, otherProps) {
@@ -51,10 +51,11 @@ class App extends React.Component {
 
   login = (history, data) => {
     userService.login(data).then((res) => {
-      const username=res.username;
-      const _id=res._id;
-      sessionStorage.setItem('username',username);
-      sessionStorage.setItem('userId',_id);
+      const username = res.username;
+      const _id = res._id;
+      sessionStorage.setItem('username', username);
+      sessionStorage.setItem('userId', _id);
+      sessionStorage.setItem('haveList', res.haveList)
       this.setState({ isLogged: true });
       history.push('/');
     });
@@ -68,18 +69,18 @@ class App extends React.Component {
         <div className="App">
           <Navigation isLogged={isLogged} />
           <div className="Container">
-            <Aside />
             <Switch>
               <Route path="/" exact><Redirect to="/movies" /></Route>
-              <Route path="/movies" render={render('Movies', Movies, { isLogged})} />
+              <Route path="/movies" render={render('Movies', Movies, { isLogged })} />
               <Route path="/movie/:id" render={render('MovieDetails', MovieDetails, { isLogged })} />
               <Route path="/create-movie" render={render('CreateMovie', CreateMovie, { isLogged })} />
-              <Route path="/create-watchlist" render={render('CreateWatchlist',CreateWatchlist,{ isLogged})}/>
-              <Route path="/watchlists" render={render('Watchlists',Watchlists,{ isLogged })}/>
-              <Route path="/myWatchlist" render={render('MyWatchlist',MyWatchlist,{isLogged})}/>
+              <Route path="/create-watchlist" render={render('CreateWatchlist', CreateWatchlist, { isLogged })} />
+              <Route path="/watchlists" render={render('Watchlists', Watchlists, { isLogged })} />
+              <Route path="/myWatchlist" render={render('MyWatchlist', MyWatchlist, { isLogged })} />
+              <Route path="/watchlist/:id" render={render('WatchlistDetails', WatchlistDetails, { isLogged })} />
               <Route path="/login" render={render('Login', Login, { isLogged, login: this.login })} />
               <Route path="/register" render={render('Register', Register, { isLogged })} />
-              <Route path="/logout" render={render('Logout', Logout, { isLogged, logout: this.logout})} />
+              <Route path="/logout" render={render('Logout', Logout, { isLogged, logout: this.logout })} />
               <Route path="*">
                 <Main title="Not Found"><NotFound /></Main>
               </Route>
