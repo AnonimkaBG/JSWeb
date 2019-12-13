@@ -35,7 +35,8 @@ class CreateWatchlist extends React.Component {
 
     return <div className="CreateWatchlist">
       <form className="CreateWatchlist">
-      <h1>Create new watchlist</h1>
+      <h1>Create new watchlist </h1>
+      <h3>(You can have only one watchlist)</h3>
         <div className="form-control">
           <label>Watchlist title</label>
           <input type="text" onChange={this.titleOnChangeHandler} ></input>

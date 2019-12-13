@@ -14,7 +14,7 @@ const MovieDetails=(props)=>{
         });
     },[id]);
 
-    const addToList= ()=>{
+    const addToList= ()=>{  // TO DO check if the movie is already in the list
         watchlistService.load(_id).then((res)=>{
             res[0]._id? watchlistService.updateWatchlist(movie,res[0]._id).then((res)=>alert(`Succesfully added ${movie.title} to your watchlist!`)) : alert('You dont have a watchlist!');
         } );

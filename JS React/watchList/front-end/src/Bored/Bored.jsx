@@ -23,7 +23,7 @@ const Movies = () => {
         {activity ?
             <div className="BoredActivity">
                 <h2>Are you bored out of your mind and don't wanna watch a movie?</h2>
-                <p>Say no more! Here you go some random activities</p>
+                <p>Say no more! Let's find you something to do</p>
                 <h1>{activity.activity}</h1>
                 <button onClick={reload}>Give me another</button>
             </div> : <div>Loading...</div>
