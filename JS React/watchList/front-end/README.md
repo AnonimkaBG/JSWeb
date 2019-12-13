@@ -27,7 +27,7 @@ Watchlist is a single page application(SPA) that let you make lists of movies yo
     - Delete movies from their watchlist
     - Profile page with created movies
     
-## 'Bored?' Page
+### 'Bored?' Page
 
 In this page you can get ideas what to do.I'm using https://www.boredapi.com/api for it.
     
