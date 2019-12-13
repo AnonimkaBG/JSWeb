@@ -1,5 +1,5 @@
 .FourOFour{
-    width: 83%;
+    width: 90%;
   display: inline-block;
   vertical-align: top; 
 }
@@ -7,4 +7,5 @@
   .FourOFour img{
     margin: 0 auto;
     display: block;
+    width: 50%;
   }

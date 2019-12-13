@@ -8,7 +8,7 @@
 
 .MyWatchlist p{
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .MyWatchlist h1{
@@ -46,6 +46,7 @@
     text-align: left;
     font-size:1vw;
     margin-bottom: 0%;
+    height: 160px;
 }
 
 .MyMovieTitle{
@@ -57,7 +58,6 @@
 
 .MyMovie button{
     margin:auto;
-    position: absolute;
-    top:860px;
     margin-left: 15%;
+    float: right;
 }

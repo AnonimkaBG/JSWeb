@@ -1,6 +1,6 @@
 .CreateMovie {
   display: inline-block; padding: 0.5%;
-  width: 83%;
+  width: 99%;
 }
 
 .CreateMovie .form-control {
@@ -13,6 +13,7 @@
 .CreateMovie label {
   width: 30%;
   text-align: center;
+  font-size: 30px;
 }
 
 .CreateMovie textarea {

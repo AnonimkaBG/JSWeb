@@ -1,20 +1,29 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import Navigation from '../Navigation/Navigation';
+
 import Main from './Main/Main';
+import Navigation from '../Navigation/Navigation';
+import NotFound from '../NotFound/NotFound';
+
 import Movies from '../movies/Movies/Movies';
 import CreateMovie from '../movies/CreateMovie/CreateMovie';
+import MovieDetails from '../movies/MovieDetails/MovieDetails';
+
 import Register from '../user/Register/Register';
 import Login from '../user/Login/Login';
-import NotFound from '../NotFound/NotFound';
+
 import Logout from '../user/Logout/Logout';
+import Profile from '../user/Profile/Profile';
+
 import Watchlists from '../Watchlists/Watchlists';
-import userService from '../services/user-service';
-import MovieDetails from '../movies/MovieDetails/MovieDetails';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import CreateWatchlist from '../CreateWatchlist/CreateWatchlist';
 import MyWatchlist from '../MyWatchlist/MyWatchlist';
-import WatchlistDetails from '../WatchlistDetails/WatchlistDetails';
+
+import userService from '../services/user-service';
+
+import Bored from '../Bored/Bored';
+
 
 
 function render(title, Cmp, otherProps) {
@@ -45,6 +54,7 @@ class App extends React.Component {
     userService.logout().then(() => {
       this.setState({ isLogged: false });
       history.push('/');
+      localStorage.clear();
       return null;
     });
   }
@@ -77,10 +87,11 @@ class App extends React.Component {
               <Route path="/create-watchlist" render={render('CreateWatchlist', CreateWatchlist, { isLogged })} />
               <Route path="/watchlists" render={render('Watchlists', Watchlists, { isLogged })} />
               <Route path="/myWatchlist" render={render('MyWatchlist', MyWatchlist, { isLogged })} />
-              <Route path="/watchlist/:id" render={render('WatchlistDetails', WatchlistDetails, { isLogged })} />
               <Route path="/login" render={render('Login', Login, { isLogged, login: this.login })} />
               <Route path="/register" render={render('Register', Register, { isLogged })} />
               <Route path="/logout" render={render('Logout', Logout, { isLogged, logout: this.logout })} />
+              <Route path="/bored" render={render('Bored',Bored)}/>
+              <Route path="/user/:id" render={render('Profile',Profile)}/>
               <Route path="*">
                 <Main title="Not Found"><NotFound /></Main>
               </Route>

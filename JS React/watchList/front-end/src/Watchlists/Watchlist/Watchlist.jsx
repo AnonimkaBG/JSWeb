@@ -6,7 +6,7 @@ import './Watchlist.css';
 function Watchlist({_id,title,description,movies}) {
     return <div className="Watchlist">
     <li key={movies._id} className="list">
-      <h1>{title}</h1>
+      <h1 className="WatchlistTitle">{title}</h1>
       <p>{description}</p>
       {movies.length!==0 ? 
       <ul>

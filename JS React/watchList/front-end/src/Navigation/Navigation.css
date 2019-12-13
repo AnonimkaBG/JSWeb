@@ -1,5 +1,5 @@
 .Navigation {
-    width: 99%;
+    width: 100%;
     margin: 0px 0px 0px 0px;
     height: 70px;
     line-height: 200%;
@@ -58,6 +58,7 @@ border-radius: 10px;
   float:left;
 }
 
-.active {
-  background-color: rgb(129, 39, 39);
+.Navigation .listItem.active {
+  background-color: #0077c7;
+  color: white;
 }

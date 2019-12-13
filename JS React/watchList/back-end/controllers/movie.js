@@ -2,11 +2,20 @@ const models = require('../models');
 
 module.exports = {
     get: (req, res, next) => {
-        models.Movie.find()
-            .then((movies) => {
-                res.send(movies);
-            })
-            .catch(next);
+        const authorId=req.query.author;
+        if (authorId) {
+            models.Movie.find({ author: authorId })
+                .then((movies) => {
+                    res.send(movies);
+                })
+                .catch(next);
+        } else {
+            models.Movie.find()
+                .then((movies) => {
+                    res.send(movies);
+                })
+                .catch(next);
+        }
     },
 
     getOne:(req, res, next) => {

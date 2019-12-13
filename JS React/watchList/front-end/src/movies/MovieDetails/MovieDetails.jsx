@@ -22,6 +22,7 @@ const MovieDetails=(props)=>{
     };
 
     return <div>
+        <h1 className="MovieDetailsT">Movie details</h1>
             {movie ?
                 <div className="MovieDetails">
                     <p className="MovieTitle">{movie.title}</p>

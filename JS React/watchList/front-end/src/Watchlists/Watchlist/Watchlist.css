@@ -1,6 +1,6 @@
 .Watchlist{
     display: inline-block;
-    width: 100%;
+    width: 97%;
     height: 300px;
     padding-right: 1%;
     background-color:gray;
@@ -16,8 +16,13 @@
 
 .Watchlist a{
     margin-right: 1%;
+    text-decoration: none;
 }
 
 .Watchlist img{
     width:110px;
+}
+
+.WatchlistTitle{
+    text-decoration: none;
 }

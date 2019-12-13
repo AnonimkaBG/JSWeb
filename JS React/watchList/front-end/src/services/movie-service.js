@@ -1,7 +1,6 @@
 const movieService = {
-    load: function () {
-      
-      return fetch(`http://localhost:9999/api/movie`).then(res => res.json());
+    load: function (id) {
+      return fetch(`http://localhost:9999/api/movie${id? `?author=${id}`: ''}`).then(res => res.json());
     },
     loadOne:function (id) {
       

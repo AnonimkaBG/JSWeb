@@ -17,7 +17,7 @@ const Watchlists=()=>{
             {watchlists ?
                 <div className="Watchlists">
                     <ul>
-                        {watchlists.map((watchlist) =><Watchlist key={watchlist._id} image={watchlist.image} title={watchlist.title} description={watchlist.description} movies={watchlist.movies}></Watchlist>)}
+                        {watchlists.map((watchlist) =><Watchlist key={watchlist._id} _id={watchlist._id} image={watchlist.image} title={watchlist.title} description={watchlist.description} movies={watchlist.movies}></Watchlist>)}
                     </ul>
                 </div> : <div>Loading...</div>
             }

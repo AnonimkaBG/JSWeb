@@ -27,7 +27,7 @@ const Watchlist = () => {
     return <div>
         {watchlist ?
             <div key={watchlist._id} className="MyWatchlist">
-                <h1>{watchlist[0].title}</h1>
+                <h1>{watchlist[0].title} Watchlist</h1>
                 <p>{watchlist[0].description}</p>
                 {watchlist[0].movies ? watchlist[0].movies.map((movie) =>
                     <div key={movie._id} className="MyMovie">

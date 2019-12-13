@@ -5,6 +5,8 @@ import './Navigation.css';
 
 function Navigation({ isLogged }) {
   const username=sessionStorage.getItem('username');
+  const id=sessionStorage.getItem('userId');
+
   return <nav className="Navigation">
     <ul>
       <li>
@@ -13,7 +15,7 @@ function Navigation({ isLogged }) {
         </Link>
       </li>
       {isLogged && <li className="listItem">
-        <Link to='/{username}'> {username}</Link>
+        <Link to={'/user/'+id}> {username}</Link>
       </li>}
       {isLogged && <li className="listItem">
         <Link to="/logout">Logout</Link>
@@ -35,6 +37,9 @@ function Navigation({ isLogged }) {
       </li>}
       <li className="listItem">
         <Link to="/watchlists">Watchlists</Link>
+      </li>
+      <li className="listItem">
+        <Link to="/bored">Bored?</Link>
       </li>
     </ul>
   </nav>;
