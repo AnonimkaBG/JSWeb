@@ -19,10 +19,17 @@ Watchlist is a single page application(SPA) that let you make lists of movies yo
 - Anonymous users
     - View all movies and watchlists
     - Login/Register
+    - View 'bored?' page
 
 - Logged in users
     - Create new movies/watchlist
     - Add movies to their watchlist
+    - Delete movies from their watchlist
+    - Profile page with created movies
+    
+### 'Bored?' Page
+
+In this page you can get ideas what to do.I'm using https://www.boredapi.com/api for it.
     
     
 ### Author
