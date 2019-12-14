@@ -10,6 +10,7 @@ const Profile = () => {
     React.useEffect(() => {
         const id = sessionStorage.getItem('userId');
         movieService.load(id).then(createdMovies => {
+            console.log(createdMovies)
             setCreated(createdMovies);
         });
     }, []);
@@ -25,7 +26,7 @@ const Profile = () => {
                         <img src={movie.image} alt="" />
                         <p>{movie.description}</p>
                 </div>)}
-            </div> : <div>Loading...</div>
+            </div> : <div className="NoInfo">You don't have any created movies yet.</div>
         }
     </div>
 }

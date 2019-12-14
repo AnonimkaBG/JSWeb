@@ -83,15 +83,25 @@ class App extends React.Component {
               <Route path="/" exact><Redirect to="/movies" /></Route>
               <Route path="/movies" render={render('Movies', Movies, { isLogged })} />
               <Route path="/movie/:id" render={render('MovieDetails', MovieDetails, { isLogged })} />
-              <Route path="/create-movie" render={render('CreateMovie', CreateMovie, { isLogged })} />
-              <Route path="/create-watchlist" render={render('CreateWatchlist', CreateWatchlist, { isLogged })} />
+              <Route path="/create-movie" render={isLogged
+                            ? render('CreateMovie', CreateMovie, { isLogged })
+                            : () => <Redirect to="/" />}/>
+              <Route path="/create-watchlist" render={isLogged
+                            ? render('CreateWatchlist', CreateWatchlist, { isLogged })
+                            : () => <Redirect to="/" />}/>
               <Route path="/watchlists" render={render('Watchlists', Watchlists, { isLogged })} />
-              <Route path="/myWatchlist" render={render('MyWatchlist', MyWatchlist, { isLogged })} />
+              <Route path="/myWatchlist" render={isLogged
+                            ? render('MyWatchlist', MyWatchlist, { isLogged })
+                            : () => <Redirect to="/" />}/>
               <Route path="/login" render={render('Login', Login, { isLogged, login: this.login })} />
               <Route path="/register" render={render('Register', Register, { isLogged })} />
-              <Route path="/logout" render={render('Logout', Logout, { isLogged, logout: this.logout })} />
-              <Route path="/bored" render={render('Bored',Bored)}/>
-              <Route path="/user/:id" render={render('Profile',Profile)}/>
+              <Route path="/logout" render={isLogged
+                            ? render("Logout", Logout, { isLogged,logout: this.logout  })
+                            : () => <Redirect to="/" />}/>
+              <Route path="/bored" render={isLogged
+                            ? render('Bored', Bored)
+                            : () => <Redirect to="/" />}/>
+              <Route path="/user/:id" render={render('Profile', Profile)} />
               <Route path="*">
                 <Main title="Not Found"><NotFound /></Main>
               </Route>

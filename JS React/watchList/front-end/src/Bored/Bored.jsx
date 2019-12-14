@@ -26,7 +26,7 @@ const Movies = () => {
                 <p>Say no more! Let's find you something to do</p>
                 <h1>{activity.activity}</h1>
                 <button onClick={reload}>Give me another</button>
-            </div> : <div>Loading...</div>
+            </div> : <div className="NoInfo">Loading...</div>
         }
     </div>
 }

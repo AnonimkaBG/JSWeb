@@ -15,7 +15,7 @@ function Watchlist({_id,title,description,movies}) {
             <img src={movie.image} alt={movie.title}/>
             </a>
             )}
-      </ul> : <div>There are no movies in this watchlist</div>
+      </ul> : <div className="NoInfo">There are no movies in this watchlist</div>
     }
     </li>
     </div>

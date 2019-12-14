@@ -6,7 +6,7 @@ const userService = {
         headers: {
           'Content-type': 'application/json'
         }
-      }).then(res => res.json());
+      }).then(res => res.json().then(text => res.status === 200 ? text : Promise.reject(alert(text))));
     },
   
     login: function (data) {
@@ -17,7 +17,7 @@ const userService = {
           'Content-type': 'application/json'
         },
         credentials: 'include'
-      }).then(res => res.json().then(text => res.status === 200 ? text : Promise.reject(text)));
+      }).then(res => res.json().then(text => res.status === 200 ? text : Promise.reject(alert(text))));
     },
     
   

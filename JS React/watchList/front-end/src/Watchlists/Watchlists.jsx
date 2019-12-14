@@ -19,7 +19,7 @@ const Watchlists=()=>{
                     <ul>
                         {watchlists.map((watchlist) =><Watchlist key={watchlist._id} _id={watchlist._id} image={watchlist.image} title={watchlist.title} description={watchlist.description} movies={watchlist.movies}></Watchlist>)}
                     </ul>
-                </div> : <div>Loading...</div>
+                </div> : <div className="NoInfo">Loading...</div>
             }
         </div>
 }

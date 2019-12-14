@@ -1,4 +1,12 @@
 .Movies {
     width: 100%;
-    height: 72vh;
+    height: auto;
+  }
+
+  .SearchBar{
+    display: inline-block;
+  }
+
+  .ClearButton{
+    display: inline-block;
   }

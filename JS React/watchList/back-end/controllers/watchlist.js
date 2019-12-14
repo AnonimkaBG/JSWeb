@@ -24,7 +24,7 @@ module.exports = {
         if(req.user.haveList){
             res.send('User already have a watchlist');
         }else{
-            updateUser(_id);
+            updateUserList(_id);
             models.Watchlist.create({ description, title, author: _id })
             .then((createdWatchlist) => {
                 res.send(createdWatchlist);
@@ -44,20 +44,27 @@ module.exports = {
         .then((updatedMovies) => res.send(updatedMovies))
         .catch(next) ;
 
-    }
+    },
 
-    // delete: (req, res, next) => {
-    //     const id = req.params.id;
-    //     models.Movie.deleteOne({ _id: id })
-    //         .then((removedMovie) => res.send(removedMovie))
-    //         .catch(next)
-    // }
+    delete: (req, res, next) => {
+        const id = req.params.id;
+        const {_id}=req.user;
+        deleteUserList(_id);
+        models.Watchlist.findByIdAndRemove(id)
+            .then((removedWatchlist) => res.send(removedWatchlist))
+            .catch(next)
+    }
 };
 
-const updateUser=(_id)=>{
+const updateUserList=(_id)=>{
     console.log('updatinggggggg')
     models.User.findByIdAndUpdate({_id:_id},{haveList:true}).then((res)=>{
         return res;
     });
+}
 
+const deleteUserList=(_id)=>{
+    models.User.findByIdAndUpdate({_id:_id},{haveList:false}).then((res)=>{
+        return res;
+    });
 }

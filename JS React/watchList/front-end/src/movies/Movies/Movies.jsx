@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from '@opuscapita/react-searchbar';
 
 import './Movies.css';
 import Movie from './Movie/Movie';
@@ -9,13 +10,31 @@ const Movies = () => {
   const [movies, setMovies] = React.useState(null);
 
   React.useEffect(() => {
+    loadMovies();
+  }, [])
+
+  const loadMovies=()=>{
     Movieservice.load().then(movies => {
       setMovies(movies);
     });
-  }, [])
+  }
+
+  const handleSearch = (searchValue) => {
+    const newMovies = movies.filter(movie => {
+      const searchTitle = searchValue.toLowerCase();
+      const movieTitle = movie.title.toLowerCase();
+      return movieTitle.includes(searchTitle);
+    });
+    setMovies(newMovies);
+  }
 
 
   return <div>
+     <SearchBar
+          onSearch={handleSearch}
+          className="SearchBar"
+        />
+        <button className="ClearButton" onClick={loadMovies}>clear filter</button>
     {movies ?
       <div className="Movies">
         {movies.map((movie) =>

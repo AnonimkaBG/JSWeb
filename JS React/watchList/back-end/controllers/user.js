@@ -12,9 +12,16 @@ module.exports = {
     post: {
         register: (req, res, next) => {
             const { username, password } = req.body;
-            models.User.create({ username, password })
+            models.User.findOne({username}).then((user)=>{
+                if(user){
+                    const error="This username already exist!";
+                    res.status(401).send(JSON.stringify(error));
+                }else{
+                    models.User.create({ username, password })
                 .then((createdUser) => res.send(createdUser))
                 .catch(next)
+                }
+            })
         },
 
         login: (req, res, next) => {
@@ -23,7 +30,8 @@ module.exports = {
               .then((user) =>!!user ? Promise.all([user, user.matchPassword(password)]) : [null,false])
               .then(([user, match]) => {
                 if (!match) {
-                  res.status(401).send('Invalid username or password');
+                    const error="Invalid username or password";
+                  res.status(401).send(JSON.stringify(error));
                   return;
                 }
       

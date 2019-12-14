@@ -21,6 +21,15 @@ const watchlistService = {
         },
         credentials: 'include'
       }).then(res => res.json());
+    },
+    deleteWatchlist:function(id){
+      return fetch(`http://localhost:9999/api/watchlist/${id}`,{
+        method: 'DELETE',
+        headers:{
+          'Content-type': 'application/json'
+        },
+        credentials: 'include'
+      }).then(res => (res));
     }
   };
   

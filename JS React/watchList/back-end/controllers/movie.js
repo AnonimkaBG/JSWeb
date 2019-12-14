@@ -6,7 +6,9 @@ module.exports = {
         if (authorId) {
             models.Movie.find({ author: authorId })
                 .then((movies) => {
-                    res.send(movies);
+                    if(movies.length!==0){
+                        res.send(movies);
+                    }
                 })
                 .catch(next);
         } else {
@@ -30,12 +32,20 @@ module.exports = {
     post: (req, res, next) => {
         const { description,image,title } = req.body;
         const { _id } = req.user;
+        models.Movie.findOne({title}).then((movie)=>{
+            if(movie){
+                const error="This movie already exist!";
+                res.status(401).send(JSON.stringify(error));
+            }else{
+                models.Movie.create({ description, image, title , author: _id})
+                .then((createdMovie) => {
+                    res.send(createdMovie);
+                })
+                .catch(next);
+            }
+        })
 
-        models.Movie.create({ description, image, title , author: _id})
-            .then((createdMovie) => {
-                res.send(createdMovie);
-            })
-            .catch(next);
+       
     },
 
     put: (req, res, next) => {

@@ -14,9 +14,18 @@ const MovieDetails=(props)=>{
         });
     },[id]);
 
-    const addToList= ()=>{  // TO DO check if the movie is already in the list
+    const addToList= ()=>{  
         watchlistService.load(_id).then((res)=>{
-            res[0]._id? watchlistService.updateWatchlist(movie,res[0]._id).then((res)=>alert(`Succesfully added ${movie.title} to your watchlist!`)) : alert('You dont have a watchlist!');
+            if(res[0]._id){
+                const found = res[0].movies.some(el => el.title===movie.title);
+                if(found){
+                    alert('You already have that movie in the watchlist!');
+                }else{
+                    watchlistService.updateWatchlist(movie,res[0]._id).then((res)=>alert(`Succesfully added ${movie.title} to your watchlist!`))
+                }
+            }else{
+                alert('You dont have a watchlist!');
+            }
         } );
         
     };
@@ -28,8 +37,9 @@ const MovieDetails=(props)=>{
                     <p className="MovieTitle">{movie.title}</p>
                     <img src={movie.image} alt="" />
                     <p className="description">{movie.description}</p>
-                    <button className="button" onClick={addToList}>Add to watchlist</button>
-                </div> : <div>Loading...</div>
+                    {props.isLogged? <button className="button" onClick={addToList}>Add to watchlist</button> : ''}
+                    
+                </div> : <div className="NoInfo"><img className="Error" src="/404.png" alt="404"/></div>
             }
         </div>
 
