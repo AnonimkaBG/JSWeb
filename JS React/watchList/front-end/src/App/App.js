@@ -98,10 +98,10 @@ class App extends React.Component {
               <Route path="/logout" render={isLogged
                             ? render("Logout", Logout, { isLogged,logout: this.logout  })
                             : () => <Redirect to="/" />}/>
-              <Route path="/bored" render={isLogged
-                            ? render('Bored', Bored)
+              <Route path="/bored" render={render('Bored', Bored)} />
+              <Route path="/user/:id" render={isLogged
+                            ? render('Profile', Profile)
                             : () => <Redirect to="/" />}/>
-              <Route path="/user/:id" render={render('Profile', Profile)} />
               <Route path="*">
                 <Main title="Not Found"><NotFound /></Main>
               </Route>
